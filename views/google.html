@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TokenSpring - Gerador de Tokens Oauth2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <header>
+        <div class="cover">
+            <div class="background"></div>
+            <span>TokenSpring</span>
+        </div>
+    </header>
+    <section class="section">
+        <div class="container">
+            <div class="">
+                <div class="container mb-6">
+                    <form action="/" method="GET">
+                        <button class="button is-success back">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 1024 1024"><path fill="#000000" d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"/><path fill="#000000" d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"/></svg>
+                            Voltar
+                        </button>
+                    </form>
+                </div>
+                <form action="/auth" method="POST">
+                    <h1 class="title is-3 has-text-success">Google</h1>
+                    <p class="subtitle is-5 mt-2 mb-5">
+                        Autentique-se para gerar seu <strong>refresh token</strong>
+                        de forma rápida, segura e sem complicações.
+                    </p>
+                    <div class="control">
+                        Client ID
+                        <input class="input" type="text" name="clientId" placeholder="Insert Client ID" />
+                    </div>
+                    <div class="control">
+                        Client Secret
+                        <input class="input" type="text" name="clientSecret" placeholder="Insert Client Secret" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simula a injeção dos tokens (substitua pelo seu render server-side ou via JS)
+        const accessToken = localStorage.getItem('access_token');
+        const refreshToken = localStorage.getItem('refresh_token');
+
+        document.getElementById('accessToken').textContent = accessToken || 'Não recebido';
+        document.getElementById('refreshToken').textContent = refreshToken || 'Não recebido';
+    </script>
+</body>
+
+</html>

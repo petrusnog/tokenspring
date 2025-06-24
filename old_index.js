@@ -7,9 +7,7 @@ const app = express();
 app.use(express.static(__dirname));
 const port = 3000;
 
-// 👇 Copie isso do terminal do ngrok após iniciar o tunnel
 const redirectUri = '';
-
 const clientId = '';
 const clientSecret = '';
 const tenantId = '';
@@ -66,8 +64,8 @@ app.get('/callback', async (req, res) => {
       }
     );
 
-    console.log('\n✅ Access Token:', response.data.access_token);
-    console.log('🔁 Refresh Token:', response.data.refresh_token);
+    console.log('\nAccess Token:', response.data.access_token);
+    console.log('Refresh Token:', response.data.refresh_token);
 
     res.send(`
         <html><body style="font-family: sans-serif; text-align: center; margin-top: 20%;">
@@ -78,14 +76,14 @@ app.get('/callback', async (req, res) => {
       </body></html>
     `);
   } catch (err) {
-    console.error('\n❌ Erro ao trocar código por tokens:', err.response?.data || err.message);
+    console.error('\nErro ao trocar código por tokens:', err.response?.data || err.message);
     res.status(500).send('Erro ao obter tokens. Veja o console.');
   }
 });
 
 
 app.listen(port, () => {
-  console.log(`\n🚀 Servidor disponível em: http://localhost:${port}`);
-  console.log('🔧 Inicie o tunnel com: ngrok http 3000');
-  console.log(`🔁 Depois, copie a URL HTTPS do ngrok e atualize o redirectUri no código`);
+  console.log(`\nServidor disponível em: http://localhost:${port}`);
+  console.log('Inicie o tunnel com: ngrok http 3000');
+  console.log(`Depois, copie a URL HTTPS do ngrok e atualize o redirectUri no código`);
 });
