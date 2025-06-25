@@ -15,18 +15,37 @@ app.get('/', (req, res) => {
 
 // Suas rotas vêm depois
 app.get('/microsoft', (req, res) => {
-  res.sendFile(__dirname + '/views/microsoft.html');
+  res.sendFile(__dirname + '/views/microsoft/index.html');
 });
 
+// Suas rotas vêm depois
+app.get('/microsoft/callback', (req, res) => {
+  res.sendFile(__dirname + '/views/microsoft/callback.html');
+});
+
+
 app.get('/google', (req, res) => {
-  res.sendFile(__dirname + '/views/google.html');
+  res.sendFile(__dirname + '/views/google/index.html');
 });
 
 app.post('/microsoft/auth', (req, res) => {
-  const authUrl = `https://login.microsoftonline.com/${req.tenantId}/oauth2/v2.0/authorize` +
-    `?client_id=${req.clientId}` +
+  const scopes = ['offline_access', 'https://outlook.office365.com/SMTP.Send'];
+  const baseUrl = `${req.protocol}://${req.get('host')}`;
+  const redirectUri = `${baseUrl}`;
+
+  console.log(
+    {
+      "scopes": scopes,
+      "baseUrl": baseUrl,
+      "redirectUri": redirectUri,
+      "req": req
+    }
+  );
+
+  const authUrl = `https://login.microsoftonline.com/${req.get('tenantId')}/oauth2/v2.0/authorize` +
+    `?client_id=${req.get('clientId')}` +
     `&response_type=code` +
-    `&redirect_uri=${encodeURIComponent(req.redirectUri)}` +
+    `&redirect_uri=${encodeURIComponent(redirectUri)}` +
     `&response_mode=query` +
     `&scope=${encodeURIComponent(scopes.join(' '))}`;
 

@@ -2,6 +2,7 @@
 @import url('./section.css');
 @import url('./button.css');
 @import url('./control.css');
+@import url('./flex.css');
 
 body {
     background-color: #f0fdf4;
