@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TokenSpring - Gerador de Tokens Oauth2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <header>
+        <div class="cover">
+            <div class="background"></div>
+            <span>TokenSpring</span>
+        </div>
+    </header>
+    <section class="section">
+        <div class="container">
+            <div class="">
+                <div class="container mb-6">
+                    <form action="/" method="GET">
+                        <button class="button is-success back">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 1024 1024"><path fill="#000000" d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"/><path fill="#000000" d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"/></svg>
+                            Voltar
+                        </button>
+                    </form>
+                </div>
+                <h1 class="title is-3 has-text-success">Microsoft</h1>
+                <div class="box">
+                    <label class="label">Access Token</label>
+                    <div class="field has-addons">
+                      <div class="control is-expanded">
+                        <textarea class="textarea is-small" readonly><%= accessToken %></textarea>
+                      </div>
+                      <div class="control">
+                        <button class="button is-info is-small" onclick="copiar('access')">Copiar</button>
+                      </div>
+                    </div>
+              
+                    <label class="label mt-4">Refresh Token</label>
+                    <div class="field has-addons">
+                      <div class="control is-expanded">
+                        <textarea class="textarea is-small" readonly><%= refreshToken %></textarea>
+                      </div>
+                      <div class="control">
+                        <button class="button is-info is-small" onclick="copiar('refresh')">Copiar</button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function copiar(tipo) {
+          const textarea = tipo === 'access'
+            ? document.querySelectorAll('textarea')[0]
+            : document.querySelectorAll('textarea')[1];
+      
+          textarea.select();
+          document.execCommand('copy');
+          alert(`${tipo === 'access' ? 'Access' : 'Refresh'} token copiado!`);
+        }
+      </script>
+</body>
+
+</html>

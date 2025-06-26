@@ -38,6 +38,10 @@
                         <input class="input" type="text" name="clientId" placeholder="Insert Client ID" />
                     </div>
                     <div class="control">
+                        Client Secret
+                        <input class="input" type="text" name="clientSecret" placeholder="Insert Client Secret" />
+                    </div>
+                    <div class="control">
                         Tenant ID
                         <input class="input" type="text" name="tenantId" placeholder="Normal Tenant ID" />
                     </div>
@@ -56,15 +60,6 @@
             </div>
         </div>
     </section>
-
-    <script>
-        // Simula a injeção dos tokens (substitua pelo seu render server-side ou via JS)
-        const accessToken = localStorage.getItem('access_token');
-        const refreshToken = localStorage.getItem('refresh_token');
-
-        document.getElementById('accessToken').textContent = accessToken || 'Não recebido';
-        document.getElementById('refreshToken').textContent = refreshToken || 'Não recebido';
-    </script>
 </body>
 
 </html>
