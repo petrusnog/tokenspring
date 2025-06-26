@@ -34,6 +34,7 @@ app.post('/microsoft/auth', (req, res) => {
   req.session.scopes = scopes;
 
   const baseUrl = `${req.protocol}://${req.get('host')}`;
+  req.session.baseUrl = baseUrl;
   const redirectUri = `${baseUrl}/microsoft/callback`;
   req.session.redirectUri = redirectUri;
 
@@ -63,7 +64,7 @@ app.post('/microsoft/auth', (req, res) => {
 });
 
 app.get('/microsoft/callback', async (req, res) => {
-  const { tenantId, clientId, clientSecret, redirectUri, scopes } = req.session;
+  const { tenantId, clientId, clientSecret, baseUrl, redirectUri, scopes } = req.session;
   const params = req.query;
   const code = params.code;
 
@@ -89,6 +90,7 @@ app.get('/microsoft/callback', async (req, res) => {
     );
 
     res.render('microsoft/callback', {
+      baseUrl: baseUrl,
       accessToken: response.data.access_token,
       refreshToken: response.data.refresh_token
     });
@@ -114,7 +116,6 @@ app.listen(port, () => {
 
 
 // Route for internal use only
-
 // app.get('/template-editor', (req, res) => {
 //   res.render('microsoft/callback', {
 //     accessToken: 'dksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajddksjdkajkdaksdjaskjdkajd',

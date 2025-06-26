@@ -6,7 +6,7 @@
     <title>TokenSpring - Gerador de Tokens Oauth2</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="<%=baseUrl%>/css/index.css">
 </head>
 
 <body>
@@ -28,27 +28,37 @@
                     </form>
                 </div>
                 <h1 class="title is-3 has-text-success">Microsoft</h1>
-                <div class="box">
-                    <label class="label">Access Token</label>
-                    <div class="field has-addons">
-                      <div class="control is-expanded">
-                        <textarea class="textarea is-small" readonly><%= accessToken %></textarea>
-                      </div>
-                      <div class="control">
-                        <button class="button is-info is-small" onclick="copiar('access')">Copiar</button>
-                      </div>
+                <div class="token-box">
+                    <div class="card">
+                    <div class="card-content">
+                        <p class="title is-5">Access Token</p>
+                        <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <textarea id="accessToken" class="textarea is-small" readonly><%= accessToken %></textarea>
+                        </div>
+                        <div class="control">
+                            <button class="button is-success ml-4" onclick="copiar('accessToken')">Copiar</button>
+                        </div>
+                        </div>
                     </div>
-              
-                    <label class="label mt-4">Refresh Token</label>
-                    <div class="field has-addons">
-                      <div class="control is-expanded">
-                        <textarea class="textarea is-small" readonly><%= refreshToken %></textarea>
-                      </div>
-                      <div class="control">
-                        <button class="button is-info is-small" onclick="copiar('refresh')">Copiar</button>
-                      </div>
                     </div>
-                  </div>
+                </div>
+
+                <div class="token-box">
+                    <div class="card">
+                    <div class="card-content">
+                        <p class="title is-5">Refresh Token</p>
+                        <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <textarea id="refreshToken" class="textarea is-small" readonly><%= refreshToken %></textarea>
+                        </div>
+                        <div class="control">
+                            <button class="button is-success ml-4" onclick="copiar('refreshToken')">Copiar</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
