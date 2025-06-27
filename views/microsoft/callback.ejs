@@ -64,13 +64,13 @@
     </section>
     <script>
         function copiar(tipo) {
-          const textarea = tipo === 'access'
+          const textarea = tipo === 'accessToken'
             ? document.querySelectorAll('textarea')[0]
             : document.querySelectorAll('textarea')[1];
       
           textarea.select();
           document.execCommand('copy');
-          alert(`${tipo === 'access' ? 'Access' : 'Refresh'} token copiado!`);
+          alert(`${tipo === 'accessToken' ? 'Access' : 'Refresh'} token copiado!`);
         }
       </script>
 </body>

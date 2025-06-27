@@ -20,21 +20,28 @@ app.use(session({
  * ROUTES
  */
 app.get('/', (req, res) => {
+  if (!req.session.baseUrl) {
+    req.session.baseUrl = `${req.protocol}://${req.get('host')}`;
+  }
+
   res.sendFile(__dirname + '/views/index.html');
 });
 
 // MICROSOFT
 
 app.get('/microsoft', (req, res) => {
+  if (!req.session.baseUrl) {
+    req.session.baseUrl = `${req.protocol}://${req.get('host')}`;
+  }
+
   res.sendFile(__dirname + '/views/microsoft/index.html');
 });
 
 app.post('/microsoft/auth', (req, res) => {
+  const { baseUrl } = req.session;
   const scopes = ['offline_access', 'https://outlook.office365.com/SMTP.Send'];
   req.session.scopes = scopes;
 
-  const baseUrl = `${req.protocol}://${req.get('host')}`;
-  req.session.baseUrl = baseUrl;
   const redirectUri = `${baseUrl}/microsoft/callback`;
   req.session.redirectUri = redirectUri;
 
@@ -106,8 +113,13 @@ app.get('/microsoft/callback', async (req, res) => {
 // GOOGLE
 
 app.get('/google', (req, res) => {
+  if (!req.session.baseUrl) {
+    req.session.baseUrl = `${req.protocol}://${req.get('host')}`;
+  }
+
   res.sendFile(__dirname + '/views/google/index.html');
 });
+
 
 
 app.listen(port, () => {
